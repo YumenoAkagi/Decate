@@ -21,6 +21,12 @@ var initializeComponent = () => {
     document.body.appendChild(renderer.domElement)
 }
 
+var renderComponent = () => {
+    requestAnimationFrame(renderComponent)
+
+    renderer.render(scene, camera)
+}
+
 window.onload = () => {
     initializeComponent()
     renderComponent()
