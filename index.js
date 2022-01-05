@@ -1,6 +1,55 @@
 import * as THREE from './three.js-dev/build/three.module.js'
+import { OrbitControls } from './three.js-dev/examples/jsm/controls/OrbitControls.js'
+import { TextGeometry } from './three.js-dev/examples/jsm/geometries/TextGeometry.js'
+import { FontLoader } from './three.js-dev/examples/jsm/loaders/FontLoader.js'
 
 var scene, camera, renderer
+var control
+var model
+var title
+
+var initializeModel = () => {
+    // testing, delete later
+    const geo = new THREE.BoxGeometry(2, 2, 2)
+    const mats = new THREE.MeshPhongMaterial()
+
+    const mesh = new THREE.Mesh(geo, mats)
+    mesh.position.set(0,0,0)
+
+    mesh.castShadow = true
+    mesh.receiveShadow = true
+    scene.add(mesh)
+
+    model = mesh
+    return mesh
+}
+
+var initializeLight = () => {
+    const light = new THREE.AmbientLight(0xffffff, 0.5)
+    scene.add(light)
+}
+
+var initializeTitle = (txt) => {
+    const loader = new FontLoader()
+    
+    loader.load('./three.js-dev/examples/fonts/helvetiker_bold.typeface.json', 
+    (font) => {
+        const geo = new TextGeometry(txt, {
+            font: font,
+            size: 1,
+            height: 1
+        })
+        const mats = new THREE.MeshStandardMaterial({
+            color: 0xd65645
+        })
+    
+        const mesh = new THREE.Mesh(geo, mats)
+    
+        scene.add(mesh)
+        title = mesh
+        return mesh
+    })
+}
 
 var initializeComponent = () => {
     scene = new THREE.Scene()
@@ -11,18 +60,27 @@ var initializeComponent = () => {
     const ASPECT = WIDTH / HEIGHT
 
     camera = new THREE.PerspectiveCamera(FOV, ASPECT)
-    camera.position.set(20, 5, 0)
+    camera.position.set(0, 5, 10)
     camera.lookAt(0, 0, 0)
 
     renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setSize(WIDTH, HEIGHT)
-    renderer.shadowMap.enabled = true
+    // renderer.shadowMap.enabled = true
 
     document.body.appendChild(renderer.domElement)
+
+    control = new OrbitControls(camera, renderer.domElement)
+
+    // add components here
+    // initializeTitle('Decate')
+    initializeModel()
+    initializeLight()
 }
 
 var renderComponent = () => {
     requestAnimationFrame(renderComponent)
+
+    control.update()
 
     renderer.render(scene, camera)
 }
