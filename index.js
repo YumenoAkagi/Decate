@@ -10,11 +10,11 @@ var title
 
 var initializeModel = () => {
     // testing, delete later
-    const geo = new THREE.BoxGeometry(2, 2, 2)
+    const geo = new THREE.BoxGeometry(1, 1, 1)
     const mats = new THREE.MeshPhongMaterial()
 
     const mesh = new THREE.Mesh(geo, mats)
-    mesh.position.set(0,0,0)
+    mesh.position.set(0, geo.parameters.height /2, 0)
 
     mesh.castShadow = true
     mesh.receiveShadow = true
@@ -51,6 +51,18 @@ var initializeTitle = (txt) => {
     })
 }
 
+var initBase = () => {
+    const planeGeo = new THREE.PlaneGeometry(5, 5)
+    const mats = new THREE.MeshBasicMaterial({
+        color: 0xb0b0b0
+    })
+
+    const mesh = new THREE.Mesh(planeGeo, mats)
+    mesh.rotateX(-Math.PI * 0.5)
+
+    scene.add(mesh)
+}
+
 var initializeComponent = () => {
     scene = new THREE.Scene()
 
@@ -63,7 +75,7 @@ var initializeComponent = () => {
     camera.position.set(0, 5, 10)
     camera.lookAt(0, 0, 0)
 
-    renderer = new THREE.WebGLRenderer({ antialias: true })
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
     renderer.setSize(WIDTH, HEIGHT)
     // renderer.shadowMap.enabled = true
 
@@ -72,6 +84,7 @@ var initializeComponent = () => {
     control = new OrbitControls(camera, renderer.domElement)
 
     // add components here
+    initBase()
     // initializeTitle('Decate')
     initializeModel()
     initializeLight()
