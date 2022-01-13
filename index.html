@@ -28,6 +28,10 @@
 				overflow: hidden;
 				background: linear-gradient(#dce1fa, #dcfac3);
 			}
+
+			.inactive {
+				opacity: 25%;
+			}
 		</style>
 		<script src="./index.js" type="module"></script>
 	</head>
@@ -37,7 +41,10 @@
 			class="w-25 h-100 bg-light"
 			style="position: absolute; top: 0; right: 0"
 		>
-			<div id="tabs" class="d-flex justify-content-between row w-100 m-0">
+			<div
+				id="tabs"
+				class="d-flex justify-content-between bg-light row w-100 m-0"
+			>
 				<div
 					class="
 						tab
@@ -45,8 +52,8 @@
 						flex-column
 						align-items-center
 						col
-						pt-2
-						pb-2
+						pt-3
+						pb-3
 					"
 				>
 					<img
@@ -61,12 +68,13 @@
 						flex-column
 						align-items-center
 						col
-						pt-2
-						pb-2
+						pt-3
+						pb-3
+						inactive
 					"
 				>
 					<img
-						src="https://img.icons8.com/material-rounded/24/000000/body.png"
+						src="https://img.icons8.com/material-rounded/24/000000/face-generator.png"
 					/>
 					<p class="m-0">Face</p>
 				</div>
@@ -77,12 +85,13 @@
 						flex-column
 						align-items-center
 						col
-						pt-2
-						pb-2
+						pt-3
+						pb-3
+						inactive
 					"
 				>
 					<img
-						src="https://img.icons8.com/material-rounded/24/000000/body.png"
+						src="https://img.icons8.com/material-rounded/24/000000/nerd-hair.png"
 					/>
 					<p class="m-0">Hair</p>
 				</div>
@@ -93,12 +102,13 @@
 						flex-column
 						align-items-center
 						col
-						pt-2
-						pb-2
+						pt-3
+						pb-3
+						inactive
 					"
 				>
 					<img
-						src="https://img.icons8.com/material-rounded/24/000000/body.png"
+						src="https://img.icons8.com/material-rounded/24/000000/clothes.png"
 					/>
 					<p class="m-0">Clothes</p>
 				</div>
@@ -109,14 +119,88 @@
 						flex-column
 						align-items-center
 						col
-						pt-2
-						pb-2
+						pt-3
+						pb-3
+						inactive
 					"
 				>
 					<img
-						src="https://img.icons8.com/material-rounded/24/000000/body.png"
+						src="https://img.icons8.com/material-rounded/24/000000/fencing-pants.png"
 					/>
 					<p class="m-0">Pants</p>
+				</div>
+			</div>
+			<div id="attributes-container">
+				<div id="attributes-body" class="container p-3">
+					<label for="customRange1" class="form-label">Height</label>
+					<input
+						type="range"
+						class="form-range mb-5"
+						id="customRange1"
+					/>
+					<label for="customRange1" class="form-label">Width</label>
+					<input
+						type="range"
+						class="form-range mb-5"
+						id="customRange1"
+					/>
+				</div>
+				<div id="attributes-face" class="container p-3">
+					<h5 class="mb-4">Eyes</h5>
+					<label for="customRange1" class="form-label">Height</label>
+					<input
+						type="range"
+						class="form-range mb-5"
+						id="customRange1"
+					/>
+					<label for="customRange1" class="form-label">Width</label>
+					<input
+						type="range"
+						class="form-range mb-5"
+						id="customRange1"
+					/>
+					<h5 class="mb-4">Nose</h5>
+					<label for="customRange1" class="form-label">Height</label>
+					<input
+						type="range"
+						class="form-range mb-5"
+						id="customRange1"
+					/>
+					<label for="customRange1" class="form-label">Width</label>
+					<input
+						type="range"
+						class="form-range mb-5"
+						id="customRange1"
+					/>
+					<h5 class="mb-4">Ears</h5>
+					<label for="customRange1" class="form-label">Height</label>
+					<input
+						type="range"
+						class="form-range mb-5"
+						id="customRange1"
+					/>
+					<label for="customRange1" class="form-label">Width</label>
+					<input
+						type="range"
+						class="form-range mb-5"
+						id="customRange1"
+					/>
+				</div>
+				<div id="attributes-hair" class="container p-3">
+					<div>Hair 1</div>
+					<div>Hair 1</div>
+					<div>Hair 1</div>
+				</div>
+				<div id="attributes-clothes" class="container p-3">
+					<div>Cloth 1</div>
+					<div>Cloth 1</div>
+					<div>Cloth 1</div>
+				</div>
+				<div id="attributes-pants" class="container p-3">
+					<div>Pant 1</div>
+					<div>Pant 1</div>
+					<div>Pant 1</div>
+					<div>Pant 1</div>
 				</div>
 			</div>
 		</div>
