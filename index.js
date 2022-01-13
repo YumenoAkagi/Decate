@@ -2,6 +2,7 @@ import * as THREE from "./three.js-dev/build/three.module.js";
 import { OrbitControls } from "./three.js-dev/examples/jsm/controls/OrbitControls.js";
 import { TextGeometry } from "./three.js-dev/examples/jsm/geometries/TextGeometry.js";
 import { FontLoader } from "./three.js-dev/examples/jsm/loaders/FontLoader.js";
+import { GLTFLoader } from "./three.js-dev/examples/jsm/loaders/GLTFLoader.js";
 
 var scene, camera, renderer;
 var control;
