@@ -11,18 +11,30 @@ var title;
 
 var initializeModel = () => {
   // testing, delete later
-  const geo = new THREE.BoxGeometry(1, 1, 1);
-  const mats = new THREE.MeshPhongMaterial();
+  // const geo = new THREE.BoxGeometry(1, 1, 1);
+  // const mats = new THREE.MeshPhongMaterial();
 
-  const mesh = new THREE.Mesh(geo, mats);
-  mesh.position.set(0, geo.parameters.height / 2, 0);
+  // const mesh = new THREE.Mesh(geo, mats);
+  // mesh.position.set(0, geo.parameters.height / 2, 0);
 
-  mesh.castShadow = true;
-  mesh.receiveShadow = true;
-  scene.add(mesh);
+  // mesh.castShadow = true;
+  // mesh.receiveShadow = true;
+  // scene.add(mesh);
 
-  model = mesh;
-  return mesh;
+  // model = mesh;
+  // return mesh;
+
+
+
+  //test model 3d
+  const loader = new GLTFLoader;
+  loader.load('./assets/Character/body_template.gltf', (body) =>{
+      model = body.scene;
+      scene.add(model);
+
+  })
+
+
 };
 
 var initializeLight = () => {
@@ -85,27 +97,27 @@ var initializeTitle = (txt) => {
 };
 
 var initBase = () => {
-  const planeGeo = new THREE.PlaneGeometry(5, 5);
-  const mats = new THREE.MeshBasicMaterial({
-    color: 0xb0b0b0,
-  });
+  // const planeGeo = new THREE.PlaneGeometry(5, 5);
+  // const mats = new THREE.MeshBasicMaterial({
+  //   color: 0xb0b0b0,
+  // });
 
-  const mesh = new THREE.Mesh(planeGeo, mats);
-  mesh.rotateX(-Math.PI * 0.5);
+  // const mesh = new THREE.Mesh(planeGeo, mats);
+  // mesh.rotateX(-Math.PI * 0.5);
 
-  scene.add(mesh);
+  // scene.add(mesh);
 };
 
 var initializeComponent = () => {
   scene = new THREE.Scene();
 
-  const FOV = 45;
+  const FOV = 40;
   const WIDTH = window.innerWidth;
   const HEIGHT = window.innerHeight;
   const ASPECT = WIDTH / HEIGHT;
 
   camera = new THREE.PerspectiveCamera(FOV, ASPECT);
-  camera.position.set(0, 5, 10);
+  camera.position.set(0, 0, 6);
   camera.lookAt(0, 0, 0);
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
