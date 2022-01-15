@@ -9,13 +9,10 @@ var control;
 var model;
 var title;
 
-var hatModels = [
-  './assets/Accessories/hat_model_1.gltf'
-]
-var hatModelIndex = 0
-var currHatModel
-
+var currAccessoriesModel = null
 var currClothModel = null
+var currPantsModel = null
+var currHairModel = null
 
 var initializeModel = () => {
   //test model 3d
@@ -29,11 +26,66 @@ var initializeModel = () => {
   })
 }
 
-var loadHatModel = () => {
+window.loadHairModel = (path) => {
+  document.getElementById('hair_selection_info').innerHTML = 'Loading hair model, please wait...'
+
+  if(currHairModel != null || currHairModel != undefined) {
+    scene.remove(currHairModel)
+    currHairModel = null
+  }
+
+  if(path == null || path == undefined || path == '') {
+    document.getElementById('hair_selection_info').innerHTML = ''
+    return
+  }
+
   const loader = new GLTFLoader()
-  loader.load(hatModels[hatModelIndex], (hat) => {
-    currHatModel = hat.scene
-    scene.add(currHatModel)
+  loader.load(path, (hair) => {
+    currHairModel = hair.scene
+    scene.add(currHairModel)
+    document.getElementById('hair_selection_info').innerHTML = ''
+  })
+}
+
+window.loadPantsModel = (path) => {
+  document.getElementById('pants_selection_info').innerHTML = 'Loading pants model, please wait...'
+
+  if(currPantsModel != null || currPantsModel != undefined) {
+    scene.remove(currPantsModel)
+    currPantsModel = null
+  }
+
+  if(path == null || path == undefined || path == '') {
+    document.getElementById('pants_selection_info').innerHTML = ''
+    return
+  }
+
+  const loader = new GLTFLoader()
+  loader.load(path, (pants) => {
+    currPantsModel = pants.scene
+    scene.add(currPantsModel)
+    document.getElementById('pants_selection_info').innerHTML = ''
+  })
+}
+
+window.loadAccessoriesModel = (path) => {
+  document.getElementById('accessories_selection_info').innerHTML = 'Loading accessories model, please wait...'
+
+  if(currAccessoriesModel != null || currAccessoriesModel != undefined) {
+    scene.remove(currAccessoriesModel)
+    currAccessoriesModel = null
+  }
+
+  if(path == null || path == undefined || path == '') {
+    document.getElementById('accessories_selection_info').innerHTML = ''
+    return
+  }
+
+  const loader = new GLTFLoader()
+  loader.load(path, (acc) => {
+    currAccessoriesModel = acc.scene
+    scene.add(currAccessoriesModel)
+    document.getElementById('accessories_selection_info').innerHTML = ''
   })
 }
 
@@ -153,7 +205,6 @@ var initializeComponent = () => {
   // initBase();
   // initializeTitle('Decate')
   initializeModel();
-  loadHatModel();
   initializeLight();
 
   //skybox

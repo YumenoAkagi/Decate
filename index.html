@@ -46,11 +46,15 @@
 			  </button>
 			  <button class="nav-link" id="nav-clothes-tab" data-bs-toggle="tab" data-bs-target="#nav-clothes" type="button" role="tab" aria-controls="nav-clothes" aria-selected="false">
 				<img src="https://img.icons8.com/material-rounded/24/000000/clothes.png" />
-					<p class="m-0">Clothes</p>
+				<p class="m-0">Clothes</p>
 			  </button>
 			  <button class="nav-link" id="nav-pants-tab" data-bs-toggle="tab" data-bs-target="#nav-pants" type="button" role="tab" aria-controls="nav-pants" aria-selected="false">
 				<img src="https://img.icons8.com/material-rounded/24/000000/fencing-pants.png" />
-					<p class="m-0">Pants</p>
+				<p class="m-0">Pants</p>
+			  </button>
+			  <button class="nav-link" id="nav-accessories-tab" data-bs-toggle="tab" data-bs-target="#nav-accessories" type="button" role="tab" aria-controls="nav-accessories" aria-selected="false">
+				<!-- <img src="https://img.icons8.com/material/344/necklace.png" /> -->
+				<p class="m-0">Accessories</p>
 			  </button>
 			</div>
 		  </nav>
@@ -79,9 +83,16 @@
 				<input type="range" class="form-range mb-5" id="customRange1" />
 			</div>
 			<div class="tab-pane fade" id="nav-hair" role="tabpanel" aria-labelledby="nav-hair-tab">
-				<div>Hair 1</div>
-				<div>Hair 1</div>
-				<div>Hair 1</div>
+				<label for="hair_selection">
+					<p class="form-label">Select Hair</p>
+				</label>
+				<select name="hair_selection" id="hair_selection" onchange="loadHairModel(this.value)" class="form-select">
+					<option value="">-- Select Hair --</option>
+					<!-- add hair model path here -->
+				</select>
+				<label for="hair_selection">
+					<p class="text-danger" id="hair_selection_info"></p>
+				</label>
 			</div>
 			<div class="tab-pane fade" id="nav-clothes" role="tabpanel" aria-labelledby="nav-clothes-tab">
 				<label for="clothes_selection">
@@ -100,13 +111,25 @@
 				<label for="pants_selection">
 					<p class="form-label">Select Pants</p>
 				</label>
-				<select name="pants_selection" id="pants_selection" onchange="" class="form-select">
+				<select name="pants_selection" id="pants_selection" onchange="loadPantsModel(this.value)" class="form-select">
 					<option value="">-- Select Pants --</option>
 					<!-- add pants model path here -->
-					<option value="">Pants 1</option>
 				</select>
 				<label for="pants_selection">
-					<p class="text-danger" id="clothes_selection_info"></p>
+					<p class="text-danger" id="pants_selection_info"></p>
+				</label>
+			</div>
+			<div class="tab-pane fade" id="nav-accessories" role="tabpanel" aria-labelledby="nav-accessories-tab">
+				<label for="accessories_selection">
+					<p class="form-label">Select Pants</p>
+				</label>
+				<select name="accessories_selection" id="accessories_selection" onchange="loadAccessoriesModel(this.value)" class="form-select">
+					<option value="">-- Select Accessories --</option>
+					<!-- add accessories model path here -->
+					<option value="./assets/Accessories/hat_model_1.gltf">Hat 1</option>
+				</select>
+				<label for="accessories_selection">
+					<p class="text-danger" id="accessories_selection_info"></p>
 				</label>
 			</div>
 		  </div>
