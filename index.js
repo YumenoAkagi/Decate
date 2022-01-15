@@ -9,38 +9,33 @@ var control;
 var model;
 var title;
 
+var hatModels = [
+  './assets/Accessories/hat_model_1.gltf'
+]
+var hatModelIndex = 0
+var currHatModel
+
 var initializeModel = () => {
-  // testing, delete later
-  // const geo = new THREE.BoxGeometry(1, 1, 1);
-  // const mats = new THREE.MeshPhongMaterial();
-
-  // const mesh = new THREE.Mesh(geo, mats);
-  // mesh.position.set(0, geo.parameters.height / 2, 0);
-
-  // mesh.castShadow = true;
-  // mesh.receiveShadow = true;
-  // scene.add(mesh);
-
-  // model = mesh;
-  // return mesh;
-
-
-
   //test model 3d
-  const loader = new GLTFLoader;
+  const loader = new GLTFLoader()
   loader.load('./assets/Character/body_template.gltf', (body) =>{
       model = body.scene;
       scene.add(model);
-
   })
+}
 
-
-};
+var loadHatModel = () => {
+  const loader = new GLTFLoader()
+  loader.load(hatModels[hatModelIndex], (hat) => {
+    currHatModel = hat.scene
+    scene.add(currHatModel)
+  })
+}
 
 var initializeLight = () => {
   const light = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(light);
-};
+}
 
 var createSkyBox = () => {
   const geometry = new THREE.BoxGeometry(20, 20, 20);
@@ -132,6 +127,7 @@ var initializeComponent = () => {
   initBase();
   // initializeTitle('Decate')
   initializeModel();
+  loadHatModel();
   initializeLight();
 
   //skybox
