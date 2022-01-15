@@ -15,6 +15,8 @@ var hatModels = [
 var hatModelIndex = 0
 var currHatModel
 
+var currClothModel = null
+
 var initializeModel = () => {
   //test model 3d
   const loader = new GLTFLoader()
@@ -32,6 +34,27 @@ var loadHatModel = () => {
   loader.load(hatModels[hatModelIndex], (hat) => {
     currHatModel = hat.scene
     scene.add(currHatModel)
+  })
+}
+
+window.loadClothModel = function(path) {
+  document.getElementById('clothes_selection_info').innerHTML = 'Loading clothes model, please wait...'
+
+  if(currClothModel != null || currClothModel != undefined) {
+    scene.remove(currClothModel)
+    currClothModel = null
+  }
+
+  if(path == null || path == undefined || path == '') {
+    document.getElementById('clothes_selection_info').innerHTML = ''
+    return
+  }
+
+  const loader = new GLTFLoader()
+  loader.load(path, (cloth) => {
+    currClothModel = cloth.scene
+    scene.add(currClothModel)
+    document.getElementById('clothes_selection_info').innerHTML = ''
   })
 }
 

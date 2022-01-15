@@ -84,15 +84,30 @@
 				<div>Hair 1</div>
 			</div>
 			<div class="tab-pane fade" id="nav-clothes" role="tabpanel" aria-labelledby="nav-clothes-tab">
-				<div>Cloth 1</div>
-				<div>Cloth 1</div>
-				<div>Cloth 1</div>
+				<label for="clothes_selection">
+					<p class="form-label">Select Clothes</p>
+				</label>
+				<select name="clothes_selection" id="clothes_selection" onchange="loadClothModel(this.value)" class="form-select">
+					<option value="">-- Select Clothes --</option>
+					<!-- add clothes model path here -->
+					<option value="./assets/Clothes/clothes_model_1.gltf">Cloth 1</option>
+				</select>
+				<label for="clothes_selection">
+					<p class="text-danger" id="clothes_selection_info"></p>
+				</label>
 			</div>
 			<div class="tab-pane fade" id="nav-pants" role="tabpanel" aria-labelledby="nav-pants-tab">
-				<div>Pant 1</div>
-				<div>Pant 1</div>
-				<div>Pant 1</div>
-				<div>Pant 1</div>
+				<label for="pants_selection">
+					<p class="form-label">Select Pants</p>
+				</label>
+				<select name="pants_selection" id="pants_selection" onchange="" class="form-select">
+					<option value="">-- Select Pants --</option>
+					<!-- add pants model path here -->
+					<option value="">Pants 1</option>
+				</select>
+				<label for="pants_selection">
+					<p class="text-danger" id="clothes_selection_info"></p>
+				</label>
 			</div>
 		  </div>
 	</div>
