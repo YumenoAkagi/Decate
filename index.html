@@ -1,208 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Decate</title>
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-			crossorigin="anonymous"
-		/>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"
-		></script>
-		<style>
-			* {
-				margin: 0;
-				padding: 0;
-			}
 
-			body {
-				width: 100vw;
-				height: 100vh;
-				overflow: hidden;
-				background: linear-gradient(#dce1fa, #dcfac3);
-			}
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Decate</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
 
-			.inactive {
-				opacity: 25%;
-			}
-		</style>
-		<script src="./index.js" type="module"></script>
-	</head>
-	<body>
-		<div
-			id="container"
-			class="w-25 h-100 bg-light"
-			style="position: absolute; top: 0; right: 0"
-		>
-			<div
-				id="tabs"
-				class="d-flex justify-content-between bg-light row w-100 m-0"
-			>
-				<div
-					class="
-						tab
-						d-flex
-						flex-column
-						align-items-center
-						col
-						pt-3
-						pb-3
-					"
-				>
-					<img
-						src="https://img.icons8.com/material-rounded/24/000000/body.png"
-					/>
-					<p class="m-0">Body</p>
-				</div>
-				<div
-					class="
-						tab
-						d-flex
-						flex-column
-						align-items-center
-						col
-						pt-3
-						pb-3
-						inactive
-					"
-				>
-					<img
-						src="https://img.icons8.com/material-rounded/24/000000/face-generator.png"
-					/>
-					<p class="m-0">Face</p>
-				</div>
-				<div
-					class="
-						tab
-						d-flex
-						flex-column
-						align-items-center
-						col
-						pt-3
-						pb-3
-						inactive
-					"
-				>
-					<img
-						src="https://img.icons8.com/material-rounded/24/000000/nerd-hair.png"
-					/>
-					<p class="m-0">Hair</p>
-				</div>
-				<div
-					class="
-						tab
-						d-flex
-						flex-column
-						align-items-center
-						col
-						pt-3
-						pb-3
-						inactive
-					"
-				>
-					<img
-						src="https://img.icons8.com/material-rounded/24/000000/clothes.png"
-					/>
+		body {
+			width: 100vw;
+			height: 100vh;
+			overflow: hidden;
+			background: linear-gradient(#dce1fa, #dcfac3);
+		}
+
+		.inactive {
+			opacity: 25%;
+		}
+	</style>
+	<script src="./index.js" type="module"></script>
+</head>
+
+<body>
+	<div id="container" class="w-25 h-100 bg-light" style="position: absolute; top: 0; right: 0">
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			  <button class="nav-link active" id="nav-body-tab" data-bs-toggle="tab" data-bs-target="#nav-body" type="button" role="tab" aria-controls="nav-body" aria-selected="true">
+				<img src="https://img.icons8.com/material-rounded/24/000000/body.png" />
+				<p class="m-0">Body</p>
+			  </button>
+			  <button class="nav-link" id="nav-face-tab" data-bs-toggle="tab" data-bs-target="#nav-face" type="button" role="tab" aria-controls="nav-face" aria-selected="false">
+				<img src="https://img.icons8.com/material-rounded/24/000000/face-generator.png" />
+				<p class="m-0">Face</p>
+			  </button>
+			  <button class="nav-link" id="nav-hair-tab" data-bs-toggle="tab" data-bs-target="#nav-hair" type="button" role="tab" aria-controls="nav-hair" aria-selected="false">
+				<img src="https://img.icons8.com/material-rounded/24/000000/nerd-hair.png" />
+				<p class="m-0">Hair</p>
+			  </button>
+			  <button class="nav-link" id="nav-clothes-tab" data-bs-toggle="tab" data-bs-target="#nav-clothes" type="button" role="tab" aria-controls="nav-clothes" aria-selected="false">
+				<img src="https://img.icons8.com/material-rounded/24/000000/clothes.png" />
 					<p class="m-0">Clothes</p>
-				</div>
-				<div
-					class="
-						tab
-						d-flex
-						flex-column
-						align-items-center
-						col
-						pt-3
-						pb-3
-						inactive
-					"
-				>
-					<img
-						src="https://img.icons8.com/material-rounded/24/000000/fencing-pants.png"
-					/>
+			  </button>
+			  <button class="nav-link" id="nav-pants-tab" data-bs-toggle="tab" data-bs-target="#nav-pants" type="button" role="tab" aria-controls="nav-pants" aria-selected="false">
+				<img src="https://img.icons8.com/material-rounded/24/000000/fencing-pants.png" />
 					<p class="m-0">Pants</p>
-				</div>
+			  </button>
 			</div>
-			<div id="attributes-container">
-				<div id="attributes-body" class="container p-3">
-					<label for="customRange1" class="form-label">Height</label>
-					<input
-						type="range"
-						class="form-range mb-5"
-						id="customRange1"
-					/>
-					<label for="customRange1" class="form-label">Width</label>
-					<input
-						type="range"
-						class="form-range mb-5"
-						id="customRange1"
-					/>
-				</div>
-				<div id="attributes-face" class="container p-3">
-					<h5 class="mb-4">Eyes</h5>
-					<label for="customRange1" class="form-label">Height</label>
-					<input
-						type="range"
-						class="form-range mb-5"
-						id="customRange1"
-					/>
-					<label for="customRange1" class="form-label">Width</label>
-					<input
-						type="range"
-						class="form-range mb-5"
-						id="customRange1"
-					/>
-					<h5 class="mb-4">Nose</h5>
-					<label for="customRange1" class="form-label">Height</label>
-					<input
-						type="range"
-						class="form-range mb-5"
-						id="customRange1"
-					/>
-					<label for="customRange1" class="form-label">Width</label>
-					<input
-						type="range"
-						class="form-range mb-5"
-						id="customRange1"
-					/>
-					<h5 class="mb-4">Ears</h5>
-					<label for="customRange1" class="form-label">Height</label>
-					<input
-						type="range"
-						class="form-range mb-5"
-						id="customRange1"
-					/>
-					<label for="customRange1" class="form-label">Width</label>
-					<input
-						type="range"
-						class="form-range mb-5"
-						id="customRange1"
-					/>
-				</div>
-				<div id="attributes-hair" class="container p-3">
-					<div>Hair 1</div>
-					<div>Hair 1</div>
-					<div>Hair 1</div>
-				</div>
-				<div id="attributes-clothes" class="container p-3">
-					<div>Cloth 1</div>
-					<div>Cloth 1</div>
-					<div>Cloth 1</div>
-				</div>
-				<div id="attributes-pants" class="container p-3">
-					<div>Pant 1</div>
-					<div>Pant 1</div>
-					<div>Pant 1</div>
-					<div>Pant 1</div>
-				</div>
+		  </nav>
+		  <div class="tab-content mx-3 my-2" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-body" role="tabpanel" aria-labelledby="nav-body-tab">
+				<label for="customRange1" class="form-label">Height</label>
+				<input type="range" class="form-range mb-5" id="customRange1" />
+				<label for="customRange1" class="form-label">Width</label>
+				<input type="range" class="form-range mb-5" id="customRange1" />
 			</div>
-		</div>
-	</body>
+			<div class="tab-pane fade" id="nav-face" role="tabpanel" aria-labelledby="nav-face-tab">
+				<h5 class="mb-4">Eyes</h5>
+				<label for="customRange1" class="form-label">Height</label>
+				<input type="range" class="form-range mb-5" id="customRange1" />
+				<label for="customRange1" class="form-label">Width</label>
+				<input type="range" class="form-range mb-5" id="customRange1" />
+				<h5 class="mb-4">Nose</h5>
+				<label for="customRange1" class="form-label">Height</label>
+				<input type="range" class="form-range mb-5" id="customRange1" />
+				<label for="customRange1" class="form-label">Width</label>
+				<input type="range" class="form-range mb-5" id="customRange1" />
+				<h5 class="mb-4">Ears</h5>
+				<label for="customRange1" class="form-label">Height</label>
+				<input type="range" class="form-range mb-5" id="customRange1" />
+				<label for="customRange1" class="form-label">Width</label>
+				<input type="range" class="form-range mb-5" id="customRange1" />
+			</div>
+			<div class="tab-pane fade" id="nav-hair" role="tabpanel" aria-labelledby="nav-hair-tab">
+				<div>Hair 1</div>
+				<div>Hair 1</div>
+				<div>Hair 1</div>
+			</div>
+			<div class="tab-pane fade" id="nav-clothes" role="tabpanel" aria-labelledby="nav-clothes-tab">
+				<div>Cloth 1</div>
+				<div>Cloth 1</div>
+				<div>Cloth 1</div>
+			</div>
+			<div class="tab-pane fade" id="nav-pants" role="tabpanel" aria-labelledby="nav-pants-tab">
+				<div>Pant 1</div>
+				<div>Pant 1</div>
+				<div>Pant 1</div>
+				<div>Pant 1</div>
+			</div>
+		  </div>
+	</div>
+</body>
+
 </html>

@@ -20,6 +20,9 @@ var initializeModel = () => {
   const loader = new GLTFLoader()
   loader.load('./assets/Character/body_template.gltf', (body) =>{
       model = body.scene;
+      model.rotation.y += 135
+      model.castShadow = true
+      model.receiveShadow = true
       scene.add(model);
   })
 }
@@ -112,19 +115,19 @@ var initializeComponent = () => {
   const ASPECT = WIDTH / HEIGHT;
 
   camera = new THREE.PerspectiveCamera(FOV, ASPECT);
-  camera.position.set(0, 0, 6);
+  camera.position.set(0, 1, 6);
   camera.lookAt(0, 0, 0);
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(WIDTH, HEIGHT);
-  // renderer.shadowMap.enabled = true
+  renderer.shadowMap.enabled = true
 
   document.body.appendChild(renderer.domElement);
 
   control = new OrbitControls(camera, renderer.domElement);
 
   // add components here
-  initBase();
+  // initBase();
   // initializeTitle('Decate')
   initializeModel();
   loadHatModel();
