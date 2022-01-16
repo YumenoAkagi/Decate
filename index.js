@@ -14,12 +14,14 @@ var currClothModel = null;
 var currPantsModel = null;
 var currHairModel = null;
 
+const ROTATION = 3.1
+
 var initializeModel = () => {
 	//test model 3d
 	const loader = new GLTFLoader();
 	loader.load("./assets/Character/body_template.gltf", (body) => {
 		model = body.scene;
-		model.rotation.y += 135;
+		model.rotation.y = ROTATION
 		model.castShadow = true;
 		model.receiveShadow = true;
 		scene.add(model);
@@ -43,6 +45,7 @@ window.loadHairModel = (path) => {
 	const loader = new GLTFLoader();
 	loader.load(path, (hair) => {
 		currHairModel = hair.scene;
+		currHairModel.rotation.y = ROTATION
 		scene.add(currHairModel);
 		document.getElementById("hair_selection_info").innerHTML = "";
 	});
@@ -65,6 +68,7 @@ window.loadPantsModel = (path) => {
 	const loader = new GLTFLoader();
 	loader.load(path, (pants) => {
 		currPantsModel = pants.scene;
+		currPantsModel.rotation.y = ROTATION
 		scene.add(currPantsModel);
 		document.getElementById("pants_selection_info").innerHTML = "";
 	});
@@ -87,6 +91,7 @@ window.loadAccessoriesModel = (path) => {
 	const loader = new GLTFLoader();
 	loader.load(path, (acc) => {
 		currAccessoriesModel = acc.scene;
+		currAccessoriesModel.rotation.y = ROTATION
 		scene.add(currAccessoriesModel);
 		document.getElementById("accessories_selection_info").innerHTML = "";
 	});
@@ -109,6 +114,7 @@ window.loadClothModel = function (path) {
 	const loader = new GLTFLoader();
 	loader.load(path, (cloth) => {
 		currClothModel = cloth.scene;
+		currClothModel.rotation.y = ROTATION
 		scene.add(currClothModel);
 		document.getElementById("clothes_selection_info").innerHTML = "";
 	});
