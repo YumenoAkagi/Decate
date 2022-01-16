@@ -18,6 +18,7 @@ var currShoesModel = null;
 const ROTATION = 3.1
 var EYE_INIT_POS_Y = 0
 var NOSE_INIT_POS_Y = 0
+var EARS_INIT_POS_Y = 0
 
 var initializeModel = () => {
 	//body model 3d
@@ -32,12 +33,18 @@ var initializeModel = () => {
 		for(let i = 0; i < model.children.length; i++) {
 			let mesh = model.children[i]
 
+			console.log(mesh)
+
 			if(mesh.name == 'eyes001') {
 				EYE_INIT_POS_Y = mesh.position.y
 			}
 
-			if(mesh.name == 'nose') {
+			else if(mesh.name == 'nose') {
 				NOSE_INIT_POS_Y = mesh.position.y
+			}
+
+			else if(mesh.name == 'ear') {
+				EARS_INIT_POS_Y = mesh.position.y
 			}
 		}
 	});
@@ -82,6 +89,18 @@ window.changeNoseHeight = (val) => {
 		if(mesh.name == 'nose') {
 			val -= 50;
 			mesh.position.y = NOSE_INIT_POS_Y + (val / 2000)
+			return
+		}
+	}
+}
+
+window.changeEarsHeight = (val) => {
+	for(let i = 0; i < model.children.length; i++) {
+		let mesh = model.children[i]
+
+		if(mesh.name == 'ear') {
+			val -= 50;
+			mesh.position.y = EARS_INIT_POS_Y + (val / 1000)
 			return
 		}
 	}
