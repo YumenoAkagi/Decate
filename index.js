@@ -13,6 +13,7 @@ var currAccessoriesModel = null;
 var currClothModel = null;
 var currPantsModel = null;
 var currHairModel = null;
+var currShoesModel = null;
 
 const ROTATION = 3.1
 
@@ -96,6 +97,29 @@ window.loadAccessoriesModel = (path) => {
 		document.getElementById("accessories_selection_info").innerHTML = "";
 	});
 };
+
+window.loadShoesModel = function (path) {
+	document.getElementById("shoes_selection_info").innerHTML =
+	"Loading shoes model, please wait...";
+
+	if (currShoesModel != null || currShoesModel != undefined) {
+	scene.remove(currShoesModel);
+	currShoesModel = null;
+	}
+
+	if (path == null || path == undefined || path == "") {
+	document.getElementById("clothes_selection_info").innerHTML = "";
+	return;
+	}
+
+	const loader = new GLTFLoader();
+	loader.load(path, (shoes) => {
+	currShoesModel = shoes.scene;
+	currShoesModel.rotation.y = ROTATION
+	scene.add(currShoesModel);
+	document.getElementById("shoes_selection_info").innerHTML = "";
+	});
+}
 
 window.loadClothModel = function (path) {
 	document.getElementById("clothes_selection_info").innerHTML =

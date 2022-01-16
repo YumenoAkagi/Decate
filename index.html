@@ -52,6 +52,10 @@
 				<img src="https://img.icons8.com/material-rounded/24/000000/fencing-pants.png" />
 				<p class="m-0">Pants</p>
 			  </button>
+			  <button class="nav-link" id="nav-shoes-tab" data-bs-toggle="tab" data-bs-target="#nav-shoes" type="button" role="tab" aria-controls="nav-shoes" aria-selected="false">
+				<!-- <img src="https://img.icons8.com/material-rounded/24/000000/fencing-pants.png" /> -->
+				<p class="m-0">Shoes</p>
+			  </button>
 			  <button class="nav-link" id="nav-accessories-tab" data-bs-toggle="tab" data-bs-target="#nav-accessories" type="button" role="tab" aria-controls="nav-accessories" aria-selected="false">
 				<!-- <img src="https://img.icons8.com/material/344/necklace.png" /> -->
 				<p class="m-0">Accessories</p>
@@ -123,9 +127,22 @@
 					<p class="text-danger" id="pants_selection_info"></p>
 				</label>
 			</div>
+			<div class="tab-pane fade" id="nav-shoes" role="tabpanel" aria-labelledby="nav-shoes-tab">
+				<label for="shoes_selection">
+					<p class="form-label">Select shoes</p>
+				</label>
+				<select name="shoes_selection" id="shoes_selection" onchange="loadShoesModel(this.value)" class="form-select">
+					<option value="">-- Select Shoes --</option>
+					<!-- add shoes model path here -->
+					<option value="./assets/Shoes/shoes_model_1.gltf"">shoes 1</option>
+				</select>
+				<label for="shoes_selection">
+					<p class="text-danger" id="shoes_selection_info"></p>
+				</label>
+			</div>
 			<div class="tab-pane fade" id="nav-accessories" role="tabpanel" aria-labelledby="nav-accessories-tab">
 				<label for="accessories_selection">
-					<p class="form-label">Select Pants</p>
+					<p class="form-label">Select Accessories</p>
 				</label>
 				<select name="accessories_selection" id="accessories_selection" onchange="loadAccessoriesModel(this.value)" class="form-select">
 					<option value="">-- Select Accessories --</option>
