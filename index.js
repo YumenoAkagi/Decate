@@ -17,7 +17,7 @@ var currHairModel = null;
 const ROTATION = 3.1
 
 var initializeModel = () => {
-	//test model 3d
+	//body model 3d
 	const loader = new GLTFLoader();
 	loader.load("./assets/Character/body_template.gltf", (body) => {
 		model = body.scene;
