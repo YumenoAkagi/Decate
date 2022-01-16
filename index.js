@@ -16,6 +16,8 @@ var currHairModel = null;
 var currShoesModel = null;
 
 const ROTATION = 3.1
+var EYE_INIT_POS_Y = 0
+var NOSE_INIT_POS_Y = 0
 
 var initializeModel = () => {
 	//body model 3d
@@ -26,8 +28,64 @@ var initializeModel = () => {
 		model.castShadow = true;
 		model.receiveShadow = true;
 		scene.add(model);
+
+		for(let i = 0; i < model.children.length; i++) {
+			let mesh = model.children[i]
+
+			if(mesh.name == 'eyes001') {
+				EYE_INIT_POS_Y = mesh.position.y
+			}
+
+			if(mesh.name == 'nose') {
+				NOSE_INIT_POS_Y = mesh.position.y
+			}
+		}
 	});
 };
+
+window.changeSkinColor = (val) => {
+	for(let i = 0; i < model.children.length; i++) {
+		let mat = model.children[i].material
+
+		if(mat.name != 'eyes.001')
+			mat.color.set(val)
+	}
+}
+
+window.changeEyeColor = (val) => {
+	for(let i = 0; i < model.children.length; i++) {
+		let mat = model.children[i].material
+
+		if(mat.name == 'eyes.001') {
+			mat.color.set(val)
+			return
+		}
+	}
+}
+
+window.changeEyesHeight = (val) => {
+	for(let i = 0; i < model.children.length; i++) {
+		let mesh = model.children[i]
+
+		if(mesh.name == 'eyes001') {
+			val -= 50;
+			mesh.position.y = EYE_INIT_POS_Y + (val / 1000)
+			return
+		}
+	}
+}
+
+window.changeNoseHeight = (val) => {
+	for(let i = 0; i < model.children.length; i++) {
+		let mesh = model.children[i]
+
+		if(mesh.name == 'nose') {
+			val -= 50;
+			mesh.position.y = NOSE_INIT_POS_Y + (val / 2000)
+			return
+		}
+	}
+}
 
 window.loadHairModel = (path) => {
 	document.getElementById("hair_selection_info").innerHTML =
