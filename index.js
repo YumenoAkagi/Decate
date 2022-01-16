@@ -7,7 +7,6 @@ import { GLTFLoader } from "./three.js-dev/examples/jsm/loaders/GLTFLoader.js";
 var scene, camera, renderer;
 var control;
 var model;
-var title;
 
 var currAccessoriesModel = null;
 var currClothModel = null;
@@ -19,6 +18,7 @@ const ROTATION = 3.1
 var EYE_INIT_POS_Y = 0
 var NOSE_INIT_POS_Y = 0
 var EARS_INIT_POS_Y = 0
+const SKIN_INIT_COLOR = '#e38140'
 
 var initializeModel = () => {
 	//body model 3d
@@ -32,8 +32,6 @@ var initializeModel = () => {
 
 		for(let i = 0; i < model.children.length; i++) {
 			let mesh = model.children[i]
-
-			console.log(mesh)
 
 			if(mesh.name == 'eyes001') {
 				EYE_INIT_POS_Y = mesh.position.y
@@ -103,6 +101,15 @@ window.changeEarsHeight = (val) => {
 			mesh.position.y = EARS_INIT_POS_Y + (val / 1000)
 			return
 		}
+	}
+}
+
+window.resetSkinColor = () => {
+	for(let i = 0; i < model.children.length; i++) {
+		let mat = model.children[i].material
+
+		if(mat.name != 'eyes.001')
+			mat.color.set(SKIN_INIT_COLOR)
 	}
 }
 
