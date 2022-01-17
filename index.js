@@ -19,7 +19,7 @@ const ROTATION = 3.1;
 var EYE_INIT_POS_Y = 0;
 var NOSE_INIT_POS_Y = 0;
 var EARS_INIT_POS_Y = 0;
-const SKIN_INIT_COLOR = "#e38140";
+const SKIN_INIT_COLOR = "#CFA887";
 
 var initializeModel = () => {
 	//body model 3d
