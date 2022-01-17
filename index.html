@@ -24,6 +24,12 @@
 		.inactive {
 			opacity: 25%;
 		}
+
+		#exportBtn {
+			position: fixed;
+			bottom: 24px;
+			right: 24px;
+		}
 	</style>
 	<script src="./index.js" type="module"></script>
 </head>
@@ -53,11 +59,11 @@
 				<p class="m-0">Pants</p>
 			  </button>
 			  <button class="nav-link" id="nav-shoes-tab" data-bs-toggle="tab" data-bs-target="#nav-shoes" type="button" role="tab" aria-controls="nav-shoes" aria-selected="false">
-				<!-- <img src="https://img.icons8.com/material-rounded/24/000000/fencing-pants.png" /> -->
+				<img src="https://img.icons8.com/material-rounded/24/000000/trainers.png"/>
 				<p class="m-0">Shoes</p>
 			  </button>
 			  <button class="nav-link" id="nav-accessories-tab" data-bs-toggle="tab" data-bs-target="#nav-accessories" type="button" role="tab" aria-controls="nav-accessories" aria-selected="false">
-				<!-- <img src="https://img.icons8.com/material/344/necklace.png" /> -->
+				<img src="https://img.icons8.com/material-rounded/24/000000/panama-hat.png"/>
 				<p class="m-0">Accessories</p>
 			  </button>
 			</div>
@@ -150,6 +156,7 @@
 				</label>
 			</div>
 		  </div>
+		  <button class="btn btn-primary" id="exportBtn">Export</button>
 	</div>
 </body>
 

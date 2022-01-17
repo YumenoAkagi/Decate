@@ -3,6 +3,7 @@ import { OrbitControls } from "./three.js-dev/examples/jsm/controls/OrbitControl
 import { TextGeometry } from "./three.js-dev/examples/jsm/geometries/TextGeometry.js";
 import { FontLoader } from "./three.js-dev/examples/jsm/loaders/FontLoader.js";
 import { GLTFLoader } from "./three.js-dev/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFExporter } from "./three.js-dev/examples/jsm/exporters/GLTFExporter.js";
 
 var scene, camera, renderer;
 var control;
@@ -14,104 +15,98 @@ var currPantsModel = null;
 var currHairModel = null;
 var currShoesModel = null;
 
-const ROTATION = 3.1
-var EYE_INIT_POS_Y = 0
-var NOSE_INIT_POS_Y = 0
-var EARS_INIT_POS_Y = 0
-const SKIN_INIT_COLOR = '#e38140'
+const ROTATION = 3.1;
+var EYE_INIT_POS_Y = 0;
+var NOSE_INIT_POS_Y = 0;
+var EARS_INIT_POS_Y = 0;
+const SKIN_INIT_COLOR = "#e38140";
 
 var initializeModel = () => {
 	//body model 3d
 	const loader = new GLTFLoader();
 	loader.load("./assets/Character/body_template.gltf", (body) => {
 		model = body.scene;
-		model.rotation.y = ROTATION
+		model.rotation.y = ROTATION;
 		model.castShadow = true;
 		model.receiveShadow = true;
 		scene.add(model);
 
-		for(let i = 0; i < model.children.length; i++) {
-			let mesh = model.children[i]
+		for (let i = 0; i < model.children.length; i++) {
+			let mesh = model.children[i];
 
-			if(mesh.name == 'eyes001') {
-				EYE_INIT_POS_Y = mesh.position.y
-			}
-
-			else if(mesh.name == 'nose') {
-				NOSE_INIT_POS_Y = mesh.position.y
-			}
-
-			else if(mesh.name == 'ear') {
-				EARS_INIT_POS_Y = mesh.position.y
+			if (mesh.name == "eyes001") {
+				EYE_INIT_POS_Y = mesh.position.y;
+			} else if (mesh.name == "nose") {
+				NOSE_INIT_POS_Y = mesh.position.y;
+			} else if (mesh.name == "ear") {
+				EARS_INIT_POS_Y = mesh.position.y;
 			}
 		}
 	});
 };
 
 window.changeSkinColor = (val) => {
-	for(let i = 0; i < model.children.length; i++) {
-		let mat = model.children[i].material
+	for (let i = 0; i < model.children.length; i++) {
+		let mat = model.children[i].material;
 
-		if(mat.name != 'eyes.001')
-			mat.color.set(val)
+		if (mat.name != "eyes.001") mat.color.set(val);
 	}
-}
+};
 
 window.changeEyeColor = (val) => {
-	for(let i = 0; i < model.children.length; i++) {
-		let mat = model.children[i].material
+	for (let i = 0; i < model.children.length; i++) {
+		let mat = model.children[i].material;
 
-		if(mat.name == 'eyes.001') {
-			mat.color.set(val)
-			return
+		if (mat.name == "eyes.001") {
+			mat.color.set(val);
+			return;
 		}
 	}
-}
+};
 
 window.changeEyesHeight = (val) => {
-	for(let i = 0; i < model.children.length; i++) {
-		let mesh = model.children[i]
+	for (let i = 0; i < model.children.length; i++) {
+		let mesh = model.children[i];
 
-		if(mesh.name == 'eyes001') {
+		if (mesh.name == "eyes001") {
 			val -= 50;
-			mesh.position.y = EYE_INIT_POS_Y + (val / 1000)
-			return
+			mesh.position.y = EYE_INIT_POS_Y + val / 1000;
+			return;
 		}
 	}
-}
+};
 
 window.changeNoseHeight = (val) => {
-	for(let i = 0; i < model.children.length; i++) {
-		let mesh = model.children[i]
+	for (let i = 0; i < model.children.length; i++) {
+		let mesh = model.children[i];
 
-		if(mesh.name == 'nose') {
+		if (mesh.name == "nose") {
 			val -= 50;
-			mesh.position.y = NOSE_INIT_POS_Y + (val / 2000)
-			return
+			mesh.position.y = NOSE_INIT_POS_Y + val / 2000;
+			return;
 		}
 	}
-}
+};
 
 window.changeEarsHeight = (val) => {
-	for(let i = 0; i < model.children.length; i++) {
-		let mesh = model.children[i]
+	for (let i = 0; i < model.children.length; i++) {
+		let mesh = model.children[i];
 
-		if(mesh.name == 'ear') {
+		if (mesh.name == "ear") {
 			val -= 50;
-			mesh.position.y = EARS_INIT_POS_Y + (val / 1000)
-			return
+			mesh.position.y = EARS_INIT_POS_Y + val / 1000;
+			return;
 		}
 	}
-}
+};
 
 window.resetSkinColor = () => {
-	for(let i = 0; i < model.children.length; i++) {
-		let mat = model.children[i].material
+	for (let i = 0; i < model.children.length; i++) {
+		let mat = model.children[i].material;
 
-		if(mat.name != 'eyes.001')
-			mat.color.set(SKIN_INIT_COLOR)
+		if (mat.name != "eyes.001") mat.color.set(SKIN_INIT_COLOR);
 	}
-}
+};
 
 window.loadHairModel = (path) => {
 	document.getElementById("hair_selection_info").innerHTML =
@@ -130,7 +125,7 @@ window.loadHairModel = (path) => {
 	const loader = new GLTFLoader();
 	loader.load(path, (hair) => {
 		currHairModel = hair.scene;
-		currHairModel.rotation.y = ROTATION
+		currHairModel.rotation.y = ROTATION;
 		scene.add(currHairModel);
 		document.getElementById("hair_selection_info").innerHTML = "";
 	});
@@ -153,7 +148,7 @@ window.loadPantsModel = (path) => {
 	const loader = new GLTFLoader();
 	loader.load(path, (pants) => {
 		currPantsModel = pants.scene;
-		currPantsModel.rotation.y = ROTATION
+		currPantsModel.rotation.y = ROTATION;
 		scene.add(currPantsModel);
 		document.getElementById("pants_selection_info").innerHTML = "";
 	});
@@ -176,7 +171,7 @@ window.loadAccessoriesModel = (path) => {
 	const loader = new GLTFLoader();
 	loader.load(path, (acc) => {
 		currAccessoriesModel = acc.scene;
-		currAccessoriesModel.rotation.y = ROTATION
+		currAccessoriesModel.rotation.y = ROTATION;
 		scene.add(currAccessoriesModel);
 		document.getElementById("accessories_selection_info").innerHTML = "";
 	});
@@ -184,26 +179,26 @@ window.loadAccessoriesModel = (path) => {
 
 window.loadShoesModel = function (path) {
 	document.getElementById("shoes_selection_info").innerHTML =
-	"Loading shoes model, please wait...";
+		"Loading shoes model, please wait...";
 
 	if (currShoesModel != null || currShoesModel != undefined) {
-	scene.remove(currShoesModel);
-	currShoesModel = null;
+		scene.remove(currShoesModel);
+		currShoesModel = null;
 	}
 
 	if (path == null || path == undefined || path == "") {
-	document.getElementById("clothes_selection_info").innerHTML = "";
-	return;
+		document.getElementById("clothes_selection_info").innerHTML = "";
+		return;
 	}
 
 	const loader = new GLTFLoader();
 	loader.load(path, (shoes) => {
-	currShoesModel = shoes.scene;
-	currShoesModel.rotation.y = ROTATION
-	scene.add(currShoesModel);
-	document.getElementById("shoes_selection_info").innerHTML = "";
+		currShoesModel = shoes.scene;
+		currShoesModel.rotation.y = ROTATION;
+		scene.add(currShoesModel);
+		document.getElementById("shoes_selection_info").innerHTML = "";
 	});
-}
+};
 
 window.loadClothModel = function (path) {
 	document.getElementById("clothes_selection_info").innerHTML =
@@ -222,7 +217,7 @@ window.loadClothModel = function (path) {
 	const loader = new GLTFLoader();
 	loader.load(path, (cloth) => {
 		currClothModel = cloth.scene;
-		currClothModel.rotation.y = ROTATION
+		currClothModel.rotation.y = ROTATION;
 		scene.add(currClothModel);
 		document.getElementById("clothes_selection_info").innerHTML = "";
 	});
@@ -336,6 +331,7 @@ var initializeComponent = () => {
 
 	//skybox
 	createSkyBox();
+	initListener();
 };
 
 var renderComponent = () => {
@@ -359,3 +355,60 @@ window.onresize = () => {
 	camera.aspect = WIDTH / HEIGHT;
 	camera.updateProjectionMatrix();
 };
+
+var initListener = () => {
+	const btn = document.getElementById("exportBtn");
+
+	btn.addEventListener("click", (e) => {
+		const array = [model];
+
+		if (currAccessoriesModel != null) array.push(currAccessoriesModel);
+		if (currClothModel != null) array.push(currClothModel);
+		if (currPantsModel != null) array.push(currPantsModel);
+		if (currHairModel != null) array.push(currHairModel);
+		if (currShoesModel != null) array.push(currShoesModel);
+
+		exportGLTF(array);
+	});
+};
+
+function exportGLTF(input) {
+	const exporter = new GLTFExporter();
+	// const options = {
+	// 	trs: document.getElementById("option_trs").checked,
+	// 	onlyVisible: document.getElementById("option_visible").checked,
+	// 	truncateDrawRange: document.getElementById("option_drawrange").checked,
+	// 	binary: document.getElementById("option_binary").checked,
+	// 	maxTextureSize:
+	// 		Number(document.getElementById("option_maxsize").value) || Infinity, // To prevent NaN value
+	// };
+	exporter.parse(input, (result) => {
+		if (result instanceof ArrayBuffer) {
+			saveArrayBuffer(result, "scene.glb");
+		} else {
+			const output = JSON.stringify(result, null, 2);
+			console.log(output);
+			saveString(output, "scene.gltf");
+		}
+	});
+}
+
+const link = document.createElement("a");
+link.style.display = "none";
+document.body.appendChild(link);
+
+function save(blob, filename) {
+	link.href = URL.createObjectURL(blob);
+	link.download = filename;
+	link.click();
+
+	// URL.revokeObjectURL( url ); breaks Firefox...
+}
+
+function saveString(text, filename) {
+	save(new Blob([text], { type: "text/plain" }), filename);
+}
+
+function saveArrayBuffer(buffer, filename) {
+	save(new Blob([buffer], { type: "application/octet-stream" }), filename);
+}
